@@ -1,14 +1,40 @@
-            - name: Soda Library Action
-  # You may pin to the exact commit or the version.
-  # uses: sodadata/soda-github-action@9c5c12a9c29b3a48d3069b8b62a84b0c2090f9fc
-  uses: sodadata/soda-github-action@v1.0.2
-  with:
-    # Version of the Soda Library on which to run the scan
-    soda_library_version: 
-    # Data Source name
-    data_source: 
-    # Configuration file
-    configuration: 
-    # Checks file(s)
-    checks: 
-          
+ name: Scan for data quality 
+ on:
+   push:
+     branches:
+       - main
+   pull_request:
+     branches:
+       - main 
+
+
+ jobs:
+ soda_scan:
+   runs-on: ubuntu-latest
+   name: Run Soda Scan
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+
+     - name: Soda Library Action
+        uses: sodadata/soda-github-action@v1.0.2
+        with:
+         soda_library_version: v1.0.4
+         data_source: newdatachirag
+         configuration: ./soda/configuration.yml
+         checks: ./soda/checks.yml
+
+
+
+     - name: Perform Soda Scan
+       uses: sodadata/soda-github-action@main
+       env:
+         SODA_CLOUD_API_KEY: ${{ secrets.SODA_CLOUD_API_KEY }}
+         SODA_CLOUD_API_SECRET: ${{ secrets.SODA_CLOUD_API_SECRET }}
+         SNOWFLAKE_USERNAME: ${{ secrets.SNOWFLAKE_USERNAME }}
+         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+       with:
+         soda_library_version: v1.0.4
+         data_source: newdatachirag
+         configuration: ./soda/configuration.yml
+         checks: ./soda/checks.yml
