@@ -1,0 +1,15 @@
+data_source newdatachirag:  
+    type: snowflake
+    account: uu70312.ap-southeast-1
+    username: chirag
+    password: Chirag@123
+    role: accountadmin
+    database: EMPLOYEE
+    warehouse: compute_wh
+    schema: EMPLOYEDETAILS
+    threads: 10
+    client_session_keep_alive: False
+soda_cloud:
+  host: cloud.soda.io
+  api_key_id: 3b179dd2-aa99-4010-9229-bedcd7e6b54d
+  api_key_secret: cVKb1RBKaF-OsIw4ZBSMCTRG9UHlGYbj0aR0Hp5iSvhHEJ0NeXQciQ
