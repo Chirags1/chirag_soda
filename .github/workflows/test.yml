@@ -13,8 +13,8 @@ jobs:
         with:
          soda_library_version: v1.0.4
          data_source: newdatachirag
-         configuration: ./Soda/configuration.yml
-         checks: ./Soda/checks.yml
+         configuration: ./configuration/configuration.yml
+         checks: ./configuration/checks.yml
 
       - name: Perform Soda Scan
         uses: sodadata/soda-github-action@v1.0.2
@@ -26,5 +26,5 @@ jobs:
         with:
          soda_library_version: v1.0.4
          data_source: newdatachirag
-         configuration: ./Soda/configuration.yml
-         checks: ./Soda/checks.yml
+         configuration: ./configuration/configuration.yml
+         checks: ./configuration/checks.yml
